@@ -116,13 +116,13 @@ export default async function RootLayout({
         </main>
 
         <ToastContainer />
-        <Arrow/>
+        <Arrow />
 
-        {/* <Script
-        async
-        src="http://localhost:3000/widget.js"
-        data-widget-id="648948f00a15189890e0"
-      ></Script> */}
+        <Script
+          async
+          src="https://feedright.vercel.app/widget.js"
+          data-widget-id="648a184a0eb63da99ea5"
+        ></Script>
       </body>
     </html>
   );
