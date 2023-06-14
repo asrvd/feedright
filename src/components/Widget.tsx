@@ -110,7 +110,7 @@ export default function FeedbackWidget({ widgetID }: { widgetID: string }) {
           {feedbackType && (
             <div className="flex flex-col gap-2 w-full ease-in h-full">
               <textarea
-                className="rounded-lg p-2 bg-zinc-200/70 hover:bg-zinc-200 border-none outline-none focus:ring-1 ring-zinc-700/50 duration-200 ease-in w-full h-2/3"
+                className="rounded-lg p-2 bg-zinc-200/70 hover:bg-zinc-200 border-none outline-none focus:ring-1 ring-zinc-700/50 duration-200 ease-in w-full h-2/3 text-sm"
                 onChange={(e) => {
                   e.preventDefault();
                   setFeedbackText(e.target.value);
