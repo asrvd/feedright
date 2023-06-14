@@ -32,7 +32,7 @@ export default async function Home() {
         alt="illustration"
         className="w-[500px] h-[460px] lg:px-4 select-none"
       />
-      <FeedbackWidget widgetID="1" />
+      {/* <FeedbackWidget widgetID="1" /> */}
     </section>
   );
 }
