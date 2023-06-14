@@ -8,7 +8,9 @@ import NavMenu from "@/components/navbar";
 import { SignInSmaller } from "./actions";
 import Link from "next/link";
 import type { Metadata } from "next";
+import NextTopLoader from "nextjs-toploader";
 import Script from "next/script";
+import Arrow from "@/components/arrow";
 
 export const metadata: Metadata = {
   title: {
@@ -43,10 +45,21 @@ export default async function RootLayout({
   return (
     <html lang="en" className="font-sans">
       <body>
+        <NextTopLoader
+          color="#3f3f46"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={200}
+          shadow={false}
+        />
         <main className="flex flex-col items-center justify-start min-h-screen">
           <div className="h-[5vh] w-full px-4 py-6 flex justify-between items-center border-b border-zinc-400/50">
             <Link className="text-zinc-950 font-semibold" href="/">
-              feedright ~
+              Feedright ~
             </Link>
             <div className="w-[60%] lg:w-[18%] md:w-[23%] flex justify-end">
               {session?.user ? (
@@ -101,12 +114,15 @@ export default async function RootLayout({
             </p>
           </div>
         </main>
+
         <ToastContainer />
-        <Script
+        <Arrow/>
+
+        {/* <Script
         async
-        src="https://feedright.vercel.app/widget.js"
-        data-widget-id="6489212ab7330d09185a"
-      ></Script>
+        src="http://localhost:3000/widget.js"
+        data-widget-id="648948f00a15189890e0"
+      ></Script> */}
       </body>
     </html>
   );

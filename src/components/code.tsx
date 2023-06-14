@@ -21,7 +21,7 @@ export default function Code({ widgetID }: { widgetID: string }) {
         </button>
       </div>
       {openDropdown && (
-        <div className="w-full bg-zinc-200 rounded-md shadow-md mb-4">
+        <div className="w-full bg-zinc-200 rounded-md shadow-sm border border-zinc-300/60 mb-4">
           <div className="flex justify-between items-center px-4 py-2">
             <p className="text-base font-semibold">
               Paste the script tag in your code to use your widget
@@ -34,7 +34,7 @@ export default function Code({ widgetID }: { widgetID: string }) {
             </button>
           </div>
           <div className="flex gap-2 p-4">
-            <p className="bg-zinc-100 w-full p-2 rounded-lg relative">
+            <p className="bg-zinc-100 w-full p-2 rounded-lg relative shadow-sm border border-zinc-300/60">
               <code className="text-zinc-950 text-sm whitespace-pre-line">
                 {`<script 
                 async 

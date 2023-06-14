@@ -134,3 +134,20 @@ export function CodeIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function CameraIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M208 58h-28.8L165 36.7a6 6 0 0 0-5-2.7H96a6 6 0 0 0-5 2.7L76.8 58H48a22.1 22.1 0 0 0-22 22v112a22.1 22.1 0 0 0 22 22h160a22.1 22.1 0 0 0 22-22V80a22.1 22.1 0 0 0-22-22Zm10 134a10 10 0 0 1-10 10H48a10 10 0 0 1-10-10V80a10 10 0 0 1 10-10h32a6 6 0 0 0 5-2.7L99.2 46h57.6L171 67.3a6 6 0 0 0 5 2.7h32a10 10 0 0 1 10 10ZM128 90a42 42 0 1 0 42 42a42 42 0 0 0-42-42Zm0 72a30 30 0 1 1 30-30a30.1 30.1 0 0 1-30 30Z"
+      ></path>
+    </svg>
+  );
+}

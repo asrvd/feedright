@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CloseIcon } from "./icons";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 export default function AddWidget({ userID }: { userID: string }) {
   const router = useRouter();
@@ -10,6 +11,8 @@ export default function AddWidget({ userID }: { userID: string }) {
   const [siteName, setSiteName] = useState("");
 
   async function addWidget() {
+    let id = toast.loading("Adding widget...");
+
     const res = await fetch("/api/create-widget", {
       method: "POST",
       body: JSON.stringify({
@@ -17,8 +20,12 @@ export default function AddWidget({ userID }: { userID: string }) {
         site: siteName,
       }),
     });
-    const data = await res.json();
-    console.log(data);
+
+    if (res.ok) {
+      toast.success("Widget added!", { id });
+    } else {
+      toast.error("Something went wrong", { id });
+    }
   }
 
   return (
@@ -35,7 +42,7 @@ export default function AddWidget({ userID }: { userID: string }) {
         </button>
       </div>
       {openDropdown && (
-        <div className="w-full bg-zinc-200 rounded-md shadow-md mb-4">
+        <div className="w-full bg-zinc-200 rounded-md shadow-sm border border-zinc-300/60 mb-4">
           <div className="flex justify-between items-center px-4 py-2">
             <p className="text-base font-semibold">Add Widget</p>
             <button

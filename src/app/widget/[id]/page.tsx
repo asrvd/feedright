@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { aw, Server } from "@/server/db/appwrite";
 import { Query } from "appwrite";
 import { getServerSession } from "next-auth";
@@ -12,6 +13,7 @@ const feedbackSchema = z.object({
       widget_id: z.string(),
       type: z.enum(["bug", "idea", "other"]),
       content: z.string(),
+      screenshot: z.string().optional().nullable(),
       $id: z.string(),
       $createdAt: z.string(),
       $updatedAt: z.string(),
@@ -42,7 +44,7 @@ export default async function Widget({
   return (
     <>
       {session?.user ? (
-        <div className="lg:w-[56%] w-full p-4 my-6 h-[90vh]">
+        <div className="lg:w-[56%] w-full p-4 my-6 min-h-[90vh] ">
           <Code widgetID={params.id} />
           <div className="flex flex-col gap-2 w-full min-h-full">
             {parsedFeedbacks.data.documents.map((feedback) => {
@@ -65,9 +67,33 @@ export default async function Widget({
                     }).format(new Date(feedback.$createdAt))}
                   </p>
                   <p className="text-base mt-2">{feedback.content}</p>
+                  {feedback.screenshot && (
+                    <details className="mt-2">
+
+                      <summary className="text-xs font-semibold">
+                        View screenshot
+                      </summary>
+
+                    <img
+                      src={feedback.screenshot}
+                      alt="screenshot"
+                      className="w-full h-auto rounded-lg mt-2"
+                    />
+                    </details>
+                  )}
                 </div>
               );
             })}
+            {parsedFeedbacks.data.total === 0 && (
+              <div className="flex flex-col gap-8 items-center justify-center">
+                <img
+                  src="https://illustrations.popsy.co/white/digital-nomad.svg"
+                  alt="illustration"
+                  className="w-[500px] h-[460px] lg:px-4 select-none self-center"
+                />
+                <p className="">No feedbacks yet!</p>
+              </div>
+            )}
           </div>
         </div>
       ) : (
