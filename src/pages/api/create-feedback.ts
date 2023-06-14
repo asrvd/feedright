@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { aw, Server } from "@/server/db/appwrite";
-import { createId } from "@paralleldrive/cuid2";
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,6 +14,7 @@ export default async function handler(
       "unique()",
       payload
     );
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.status(200).json(widget);
   } catch (error) {
     console.error(error);

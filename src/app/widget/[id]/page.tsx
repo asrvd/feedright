@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { z } from "zod";
 import Code from "@/components/code";
-import FeedbackWidget from "@/components/Widget";
 
 const feedbackSchema = z.object({
   total: z.number(),
@@ -70,7 +69,6 @@ export default async function Widget({
               );
             })}
           </div>
-          <FeedbackWidget widgetID={params.id} />
         </div>
       ) : (
         <p>not logged in</p>

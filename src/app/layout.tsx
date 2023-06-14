@@ -8,13 +8,14 @@ import NavMenu from "@/components/navbar";
 import { SignInSmaller } from "./actions";
 import Link from "next/link";
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
-    default: "Supathreads",
-    template: "Supathreads • %s",
+    default: "Feedright",
+    template: "Feedright • %s",
   },
-  description: "Turn your blogs into concise twitter threads.",
+  description: "Getting feedback made easier using widgets.",
   robots: {
     index: true,
     follow: true,
@@ -45,7 +46,7 @@ export default async function RootLayout({
         <main className="flex flex-col items-center justify-start min-h-screen">
           <div className="h-[5vh] w-full px-4 py-6 flex justify-between items-center border-b border-zinc-400/50">
             <Link className="text-zinc-950 font-semibold" href="/">
-              supathreads ~
+              feedright ~
             </Link>
             <div className="w-[60%] lg:w-[18%] md:w-[23%] flex justify-end">
               {session?.user ? (
@@ -74,13 +75,13 @@ export default async function RootLayout({
                 target="_blank"
                 className="text-zinc-950 font-semibold cursor-pointer"
               >
-                supabase AI hackathon
+                hashnode x appwrite hackathon
               </a>
             </p>
             <p className="text-sm text-zinc-900 w-full lg:text-end md:text-end text-center">
               source code on{" "}
               <a
-                href="https://github.com/asrvd/supathreads"
+                href="https://github.com/asrvd/feedright"
                 rel="noreferrer"
                 target="_blank"
                 className="text-zinc-950 font-semibold cursor-pointer"
@@ -101,6 +102,11 @@ export default async function RootLayout({
           </div>
         </main>
         <ToastContainer />
+        <Script
+        async
+        src="https://feedright.vercel.app/widget.js"
+        data-widget-id="6489212ab7330d09185a"
+      ></Script>
       </body>
     </html>
   );

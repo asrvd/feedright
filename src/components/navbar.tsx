@@ -12,10 +12,6 @@ const navItems = [
     route: "/",
   },
   {
-    label: "Create",
-    route: "/create",
-  },
-  {
     label: "Dashboard",
     route: "/dashboard",
   },

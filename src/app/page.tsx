@@ -16,7 +16,7 @@ export default async function Home() {
           turn your blogs into concise twitter threads
         </h2>
         {session?.user ? (
-          <NavButton label="Start Creating" route="/create" />
+          <NavButton label="Create Widgets" route="/dashboard" />
         ) : (
           <SignIn label="Get Started" />
         )}
