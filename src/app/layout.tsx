@@ -83,7 +83,7 @@ export default async function RootLayout({
               </a>{" "}
               for the{" "}
               <a
-                href="https://supabase.com/blog/launch-week-7-hackathon"
+                href="https://hashnode.com/hackathons/appwrite"
                 rel="noreferrer"
                 target="_blank"
                 className="text-zinc-950 font-semibold cursor-pointer"
