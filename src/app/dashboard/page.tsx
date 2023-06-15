@@ -30,7 +30,7 @@ export default async function Dashboard() {
   const widgets = await aw.database.listDocuments(
     Server.databaseID as string,
     Server.widgetCollectionID as string,
-    [Query.equal("user_id", [session.user.id])]
+    [Query.equal("user_id", [session.user.id]), Query.orderDesc("$createdAt")]
   );
 
   const parsedWidgets = widgetSchema.safeParse(widgets);

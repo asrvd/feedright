@@ -7,8 +7,10 @@ import {
   FeedbackIcon,
   CameraIcon,
   CheckIcon,
+  Spinner,
 } from "./icons";
 import { aw, Server } from "@/server/db/appwrite";
+import ToolTip from "./tooltip";
 
 type FeedbackType = "bug" | "idea" | "other";
 
@@ -124,28 +126,37 @@ export default function FeedbackWidget({ widgetID }: { widgetID: string }) {
                 }
               />
               <div className="flex h-1/3 gap-2">
-                <label className="rounded-lg h-full bg-zinc-200/70 hover:bg-zinc-200 focus:ring-1 ring-zinc-700/50 duration-200 ease-in font-bold text-center p-3 cursor-pointer">
-                  {fileAdded ? <CheckIcon /> : <CameraIcon />}
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={(e) => {
-                      e.preventDefault();
-                      if (e.target.files) {
-                        setFile(e.target.files[0]);
-                        setFileAdded(true);
-                        sleep(2000).then(() => setFileAdded(false));
-                      }
-                    }}
-                  />
-                </label>
+                <ToolTip content="Attach a screenshot" position="top">
+                  <label className="rounded-lg h-full bg-zinc-200/70 hover:bg-zinc-200 focus:ring-1 ring-zinc-700/50 duration-200 ease-in font-bold text-center p-3 cursor-pointer">
+                    {fileAdded ? <CheckIcon /> : <CameraIcon />}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => {
+                        e.preventDefault();
+                        if (e.target.files) {
+                          setFile(e.target.files[0]);
+                          setFileAdded(true);
+                          sleep(2000).then(() => setFileAdded(false));
+                        }
+                      }}
+                    />
+                  </label>
+                </ToolTip>
                 <button
                   className="rounded-lg h-full bg-zinc-200/70 hover:bg-zinc-200 focus:ring-1 ring-zinc-700/50 duration-200 ease-in w-full text-center font-bold"
                   onClick={submitFeedback}
                   disabled={!feedbackText || isSending}
                 >
-                  {isSending ? "Sending..." : "Send"}
+                  {isSending ? (
+                    <div className="flex justify-center items-center gap-2">
+                      <Spinner />
+                      <span>Sending</span>
+                    </div>
+                  ) : (
+                    "Send"
+                  )}
                 </button>
               </div>
             </div>

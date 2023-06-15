@@ -33,7 +33,7 @@ export default async function Widget({
   const feedbacks = await aw.database.listDocuments(
     Server.databaseID as string,
     Server.feedbackCollectionID as string,
-    [Query.equal("widget_id", [params.id])]
+    [Query.equal("widget_id", [params.id]), Query.orderDesc("$createdAt")]
   );
   const parsedFeedbacks = feedbackSchema.safeParse(feedbacks);
 
@@ -45,7 +45,8 @@ export default async function Widget({
     <>
       {session?.user ? (
         <div className="lg:w-[56%] w-full p-4 my-6 min-h-[90vh] ">
-          <Code widgetID={params.id} />
+
+            <Code widgetID={params.id} />
           <div className="flex flex-col gap-2 w-full min-h-full">
             {parsedFeedbacks.data.documents.map((feedback) => {
               return (
@@ -69,16 +70,15 @@ export default async function Widget({
                   <p className="text-base mt-2">{feedback.content}</p>
                   {feedback.screenshot && (
                     <details className="mt-2">
-
                       <summary className="text-xs font-semibold">
                         View screenshot
                       </summary>
 
-                    <img
-                      src={feedback.screenshot}
-                      alt="screenshot"
-                      className="w-full h-auto rounded-lg mt-2"
-                    />
+                      <img
+                        src={feedback.screenshot}
+                        alt="screenshot"
+                        className="w-full h-auto rounded-lg mt-2"
+                      />
                     </details>
                   )}
                 </div>

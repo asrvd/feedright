@@ -1,7 +1,7 @@
 export default function Arrow() {
   return (
     <div className="hidden lg:block md:block fixed right-6 bottom-16 z-100">
-      <p className="mb-2 ml-3">Click Here</p>
+      <p className="mb-2 ml-3">Try it now!</p>
       <svg
         className="transform -rotate-45"
         width="51"
