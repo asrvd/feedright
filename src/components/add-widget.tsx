@@ -23,6 +23,7 @@ export default function AddWidget({ userID }: { userID: string }) {
 
     if (res.ok) {
       toast.success("Widget added!", { id });
+      router.refresh();
     } else {
       toast.error("Something went wrong", { id });
     }
